@@ -2,6 +2,21 @@ import React, { Component } from "react";
 import Counter from "./counter";
 class Counters extends Component {
 
+  constructor(props) {
+    super(props)
+    this.state = {};
+  }
+
+  componentDidMount = () => {
+    setTimeout(() => {
+      fetch('https://jsonplaceholder.typicode.com/todos/1')
+        .then(response => response.json())
+        .then(json => {
+          this.setState({ title: json.title })
+        });
+    }, 5000);
+  }
+
   render() {
     const {
       onReset,
@@ -22,6 +37,7 @@ class Counters extends Component {
             onIncrement={onIncrement}
             onDecrement={onDecrement}
             counter={counter}
+            title={this.state.title || "Fuck you"}
           ></Counter>
         ))}
       </div>

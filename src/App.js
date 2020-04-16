@@ -17,6 +17,13 @@ class App extends Component {
   constructor(props) {
     super(props);
     console.log('App - Constructor', props);
+
+    // const person = {
+    //   name: "Sazal",
+    //   walk() {
+    //     console.log(this);
+    //   }
+    // }
     // this.state =
   }
   handleDelete = (counterId) => {
@@ -43,7 +50,8 @@ class App extends Component {
     const index = counters.indexOf(counter);
 
     counters[index] = { ...counter };
-    counters[index].value--;
+
+    counters[index].value > 0 ? counters[index].value-- : 0;
 
     this.setState({ counters });
   };
